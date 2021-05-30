@@ -11,6 +11,23 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function tables()
+    {
+        return $this->hasMany(Table::class);
+    }
+
+    public function activeTable(){
+        return $this->tables()->where('is_active', true)->first();
+    }
+
+    public function increasePoints(){
+        $this->points += 1;
+    }
+
+    public function decreaseSteps(){
+        $this->remaining_steps -= 1;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +37,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'remaining_steps',
+        'health',
+        'points',
+        'gold'
     ];
 
     /**

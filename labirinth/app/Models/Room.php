@@ -9,5 +9,12 @@ class Room extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type'];
+    public function enemy()
+    {
+        return $this->belongsTo(Enemy::class);
+    }
+
+    public function tables() {
+        return $this->belongsToMany(Table::class);
+    }
 }

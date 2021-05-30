@@ -20,7 +20,11 @@ class CreateTablesTable extends Migration
             $table->integer('win_row');
             $table->integer('win_col');
             $table->boolean('was_won');
+            $table->boolean('is_active');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

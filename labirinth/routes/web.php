@@ -16,9 +16,7 @@ use App\Http\Controllers\TableController;
 */
 
 
-Route::get('/', [MainController::class, 'getTable'])->name('getTable');
+Route::get('/', [MainController::class, 'getTable'])->name('getTable')->middleware('auth');
 Route::post('/step', [TableController::class, 'stepOnTable'])->name('stepTable');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
